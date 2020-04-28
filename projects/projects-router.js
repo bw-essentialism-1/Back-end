@@ -1,21 +1,21 @@
 const router = require("express").Router();
 
-const Essentials = require("./essentials-model.js");
+const Projects = require("./projects-model.js");
 
-// GET essentials
+// GET projects
 router.get("/", (req, res) => {
-  Essentials.find()
-    .then((essentials) => {
-      res.json(essentials);
+  Projects.find()
+    .then((project) => {
+      res.json(project);
     })
     .catch((err) => res.send(err));
 });
 
-// ADD essentials
+// ADD projects
 router.post("/", (req, res) => {
-  Essentials.addEssentials(req.body)
-    .then((essential) => {
-      res.status(201).json(essential);
+  Projects.addProjects(req.body)
+    .then((project) => {
+      res.status(201).json(project);
     })
     .catch((err) => {
       console.log(err);
@@ -23,11 +23,11 @@ router.post("/", (req, res) => {
     });
 });
 
-// REMOVE Essentials
+// REMOVE projects
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
-  Essentials.removeEssentials(id)
+  Projects.removeProjects(id)
     .then((deleted) => {
       if (deleted) {
         res.status(200).json({ removed: deleted });

@@ -3,7 +3,7 @@ const db = require("../database/dbConfig.js");
 module.exports = {
   find,
   addEssentials,
-  addUsersEssentials
+  removeEssentials,
 };
 
 // Grab the default essentials
@@ -16,7 +16,7 @@ function addEssentials(essential) {
   return db("Essentials").insert(essential);
 }
 
-// Add users essentials
-function addUsersEssentials(IDs) {
-  return db ("UsersEssentials").insert(IDs)
+// Remove any essentials
+function removeEssentials(id) {
+  return db("Essentials").where({ id }).del();
 }
