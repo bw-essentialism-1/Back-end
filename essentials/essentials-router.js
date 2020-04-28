@@ -23,4 +23,16 @@ router.post("/", (req, res) => {
     });
 });
 
+// ADD user's essentials
+router.post("/", (req, res) => {
+    Essentials.addUsersEssentials(req.body)
+      .then(() => {
+          res.status(201).json({message: 'User Essential(s) added successfully'})
+      })
+      .catch((err) => {
+          console.log(err);
+          res.status(500).json({ error: err.message });
+      })
+})
+
 module.exports = router;
