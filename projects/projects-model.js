@@ -1,14 +1,14 @@
 const db = require("../database/dbConfig.js");
 
 module.exports = {
-  find,
+  findById,
   addProjects,
   removeProjects,
 };
 
 // Grab the default projects
-function find() {
-  return db("Projects").select("id", "name");
+function findById(user_id) {
+  return db("Projects").where({ user_id }).select("id", "name");
 }
 
 // Add new essentials

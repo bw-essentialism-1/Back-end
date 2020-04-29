@@ -4,7 +4,7 @@ const Projects = require("./projects-model.js");
 
 // GET projects
 router.get("/", (req, res) => {
-  Projects.find()
+  Projects.findById(req.decodedToken.userId)
     .then((project) => {
       res.json(project);
     })
@@ -13,7 +13,8 @@ router.get("/", (req, res) => {
 
 // ADD projects
 router.post("/", (req, res) => {
-  Projects.addProjects(req.body)
+  const insert = { user_id: req.decodedToken.userId, name: req.body.name };
+  Projects.addProjects(insert)
     .then((project) => {
       res.status(201).json(project);
     })
@@ -24,10 +25,10 @@ router.post("/", (req, res) => {
 });
 
 // REMOVE projects
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
-  Projects.removeProjects(id)
+  await Projects.removeProjects(id)
     .then((deleted) => {
       if (deleted) {
         res.status(200).json({ removed: deleted });
