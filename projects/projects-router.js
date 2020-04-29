@@ -24,10 +24,10 @@ router.post("/", (req, res) => {
 });
 
 // REMOVE projects
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
-  Projects.removeProjects(id)
+  await Projects.removeProjects(id)
     .then((deleted) => {
       if (deleted) {
         res.status(200).json({ removed: deleted });
