@@ -1,19 +1,19 @@
 const db = require("../database/dbConfig.js");
 
 module.exports = {
-  find,
+  findById,
   addEssentials,
   removeEssentials,
 };
 
 // Grab the default essentials
-function find() {
-  return db("Essentials").select("id", "name");
+function findById(user_id) {
+  return db("Essentials").where({ user_id }).select("id", "name");
 }
 
 // Add new essentials
-function addEssentials(essential) {
-  return db("Essentials").insert(essential);
+function addEssentials(user_id, essential) {
+  return db("Essentials").insert(user_id, essential);
 }
 
 // Remove any essentials

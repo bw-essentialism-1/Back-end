@@ -8,16 +8,6 @@ exports.up = function (knex) {
     .createTable("Essentials", (tbl) => {
       tbl.increments();
       tbl.text("name", 255).unique().notNullable().index();
-    })
-    .createTable("Projects", (tbl) => {
-      tbl.increments();
-      tbl.text("name", 255).unique().notNullable().index();
-    })
-    .createTable("Mission", (tbl) => {
-      tbl.increments();
-      tbl.text("mission", 255).notNullable().index();
-    })
-    .createTable("Users_Essentials", (tbl) => {
       tbl
         .integer("user_id", 255)
         .notNullable()
@@ -25,20 +15,27 @@ exports.up = function (knex) {
         .inTable("Users")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
+    })
+    .createTable("Projects", (tbl) => {
+      tbl.increments();
+      tbl.text("name", 255).unique().notNullable().index();
       tbl
-        .integer("ess_id", 255)
+        .integer("user_id", 255)
         .notNullable()
         .references("id")
-        .inTable("Essentials")
+        .inTable("Users")
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
-      tbl.unique(["user_id", "ess_id"]);
+    })
+    .createTable("Mission", (tbl) => {
+      tbl.increments();
+      tbl.text("mission", 255).notNullable().index();
     });
 };
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists("Users_Essentials")
+    .dropTableIfExists("Mission")
     .dropTableIfExists("Projects")
     .dropTableIfExists("Essentials")
     .dropTableIfExists("Users");
