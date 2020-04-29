@@ -24,10 +24,10 @@ router.post("/", (req, res) => {
 });
 
 // REMOVE Essentials
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-
-  Essentials.removeEssentials(id)
+// update here
+  await Essentials.removeEssentials(id)
     .then((deleted) => {
       if (deleted) {
         res.status(200).json({ removed: deleted });
