@@ -4,7 +4,8 @@ const Essentials = require("./essentials-model.js");
 
 // GET essentials
 router.get("/", (req, res) => {
-  Essentials.find()
+  console.log(req.decodedToken.userId);
+  Essentials.findById(req.decodedToken.userId)
     .then((essentials) => {
       res.json(essentials);
     })
@@ -13,7 +14,9 @@ router.get("/", (req, res) => {
 
 // ADD essentials
 router.post("/", (req, res) => {
-  Essentials.addEssentials(req.body)
+  console.log(req.decodedToken.userId);
+  const insert = { user_id: req.decodedToken.userId, name: req.body.name };
+  Essentials.addEssentials(insert)
     .then((essential) => {
       res.status(201).json(essential);
     })
@@ -26,7 +29,6 @@ router.post("/", (req, res) => {
 // REMOVE Essentials
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-// update here
   await Essentials.removeEssentials(id)
     .then((deleted) => {
       if (deleted) {
