@@ -29,7 +29,6 @@ router.post("/", (req, res) => {
 // REMOVE Essentials
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-
   await Essentials.removeEssentials(id)
     .then((deleted) => {
       if (deleted) {
