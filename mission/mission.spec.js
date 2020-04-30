@@ -1,17 +1,17 @@
 const request = require("supertest");
 const server = require("../api/server");
 const db = require("../database/dbConfig.js");
-describe("GET /api/essentials", function () {
+describe("GET /api/mission", function () {
   it("return 400 on error", function () {
     return request(server)
-      .get("/api/essentials")
+      .get("/api/mission")
       .then((res) => {
         expect(res.status).toBe(400);
       });
   });
   it('should return a message saying "Please provide credentials"', function () {
     return request(server)
-      .get("/api/essentials")
+      .get("/api/mission")
       .then((res) => {
         expect(res.body).toMatchObject({
           message: "Please provide credentials",
