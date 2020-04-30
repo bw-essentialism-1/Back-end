@@ -1,24 +1,24 @@
 exports.seed = function (knex) {
   return knex("Essentials").insert([
-    { name: "Athletic ability" },
-    { name: "Art and literature" },
+    { name: "Athletic ability", user_id: 1 },
+    { name: "Art and literature", user_id: 1  },
     {
       name:
-        "Creativity, discovering, or inventing things to make a difference in the world",
+        "Creativity, discovering, or inventing things to make a difference in the world", user_id: 1 
     },
-    { name: "Independence" },
-    { name: "Kindness and generosity" },
-    { name: "Living in the moment" },
+    { name: "Independence", user_id: 1  },
+    { name: "Kindness and generosity", user_id: 1  },
+    { name: "Living in the moment", user_id: 1  },
     {
       name:
-        "Membership in a social group (such as your community, racial group, or school club)",
+        "Membership in a social group (such as your community, racial group, or school club)", user_id: 1 
     },
-    { name: "Music" },
-    { name: "My community" },
-    { name: "My moral principles" },
-    { name: "Nature and the environment" },
-    { name: "Relationships with friends and family" },
-    { name: "Sense of humor" },
-    { name: "Success in my career" },
+    { name: "Music", user_id: 1  },
+    { name: "My community", user_id: 1  },
+    { name: "My moral principles", user_id: 1  },
+    { name: "Nature and the environment", user_id: 1  },
+    { name: "Relationships with friends and family", user_id: 1  },
+    { name: "Sense of humor", user_id: 1  },
+    { name: "Success in my career", user_id: 1  },
   ]);
 };
